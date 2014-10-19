@@ -1,6 +1,6 @@
 This is a simple slim Resful API test. It's under construction.
 
-It's aim is to understant how slim php and redbeans orm work, and to fork it to develope other restfull apis if necessary.
+It's aim is to understant how slim php and redbeans orm work, and to fork it to develope other restful apis if necessary.
 
 A lot of the information on this little guide can be found at: http://docs.slimframework.com/
 
