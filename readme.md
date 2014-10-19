@@ -7,7 +7,7 @@ A lot of the information on this little guide can be found at: http://docs.slimf
 Steps to install Slim framework and getting started:
 
 This project has been tested on ubuntu 14.04 Thrusty Thar, Apache server 2.4, php 5.3 and mysql-server 5.5
-Slim's version is  and RedBeanPHP's version is RedBeanPHP 4.
+Slim's version is  and RedBeanPHP's version is RedBeanPHP 4.1.1.
 
 Follow this guide to create virtual hosts and to modify your /etc/hosts file if you do not own any domain.
 I am using ubuntu and apache server, so the steps explained in this guide work for me. Other guides can help you to find

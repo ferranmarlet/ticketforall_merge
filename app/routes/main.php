@@ -9,7 +9,7 @@ $app->get(
     <html>
         <head>
             <meta charset="utf-8"/>
-            <title>Slim Framework for PHP 5</title>
+            <title>Restful API example</title>
             <style>
                 html,body,div,span,object,iframe,
                 h1,h2,h3,h4,h5,h6,p,blockquote,pre,
@@ -39,7 +39,7 @@ $app->get(
                 hr{display:block;height:1px;border:0;border-top:1px solid #cccccc;margin:1em 0;padding:0;}
                 input,select{vertical-align:middle;}
                 html{ background: #EDEDED; height: 100%; }
-                body{background:#FFF;margin:0 auto;min-height:100%;padding:0 30px;width:440px;color:#666;font:14px/23px Arial,Verdana,sans-serif;}
+                body{background:#FFF;margin:0 auto;min-height:100%;padding:30px 30px;width:800px;color:#666;font:14px/23px Arial,Verdana,sans-serif;}
                 h1,h2,h3,p,ul,ol,form,section{margin:0 0 20px 0;}
                 h1{color:#333;font-size:20px;}
                 h2,h3{color:#333;font-size:14px;}
@@ -55,44 +55,46 @@ $app->get(
         </head>
         <body>
             <header>
-                <a href="http://www.slimframework.com"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHIAAAA6CAYAAABs1g18AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABRhJREFUeNrsXY+VsjAMR98twAo6Ao4gI+gIOIKOgCPICDoCjCAjXFdgha+5C3dcv/QfFB5i8h5PD21Bfk3yS9L2VpGnlGW5kS9wJMTHNRxpmjYRy6SycgRvL18OeMQOTYQ8HvIoJKiiz43hgHkq1zvK/h6e/TyJQXeV/VyWBOSHA4C5RvtMAiCc4ZB9FPjgRI8+YuKcrySO515a1hoAY3nc4G2AH52BZsn+MjaAEwIJICKAIR889HljMCcyrR0QE4v/q/BVBQva7Q1tAczG18+x+PvIswHEAslLbfGrMZKiXEOMAMy6LwlisQCJLPFMfKdBtli5dIihRyH7A627Iaiq5sJ1ThP9xoIgSdWSNVIHYmrTQgOgRyRNqm/M5PnrFFopr3F6B41cd8whRUSufUBU5EL4U93AYRnIWimCIiSI1wAaAZpJ9bPnxx8eyI3Gt4QybwWa6T/BvbQECUMQFkhd3jSkPFgrxwcynuBaNT/u6eJIlbGOBWSNIUDFEIwPZFAtBfYrfeIOSRSXuUYCsprCXwUIZWYnmEhJFMIocMDWjn206c2EsGLCJd42aWSyBNMnHxLEq7niMrY2qyDbQUbqrrTbwUPtxN1ZZCitQV4ZSd6DyoxhmRD6OFjuRUS/KdLGRHYowJZaqYgjt9Lchmi3QYA/cXBsHK6VfWNR5jgA1DLhwfFe4HqfODBpINEECCLO47LT/+HSvSd/OCOgQ8qE0DbHQUBqpC4BkKMPYPkFY4iAJXhGAYr1qmaqQDbECCg5A2NMchzR567aA4xcRKclI405Bmt46vYD7/Gcjqfk6GP/kh1wovIDSHDfiAs/8bOCQ4cf4qMt7eH5Cucr3S0aWGFfjdLHD8EhCFvXQlSqRrY5UV2O9cfZtk77jUFMXeqzCEZqSK4ICkSin2tE12/3rbVcE41OBjBjBPSdJ1N5lfYQpIuhr8axnyIy5KvXmkYnw8VbcwtTNj7fDNCmT2kPQXA+bxpEXkB21HlnSQq0gD67jnfh5KavVJa/XQYEFSaagWwbgjNA+ywstLpEWTKgc5gwVpsyO1bTII+tA6B7BPS+0PiznuM9gPKsPVXbFdADMtwbJxSmkXWfRh6AZhyyzBjIHoDmnCGaMZAKjd5hyNJYCBGDOVcg28AXQ5atAVDO3c4dSALQnYblfa3M4kc/cyA7gMIUBQCTyl4kugIpy8yA7ACqK8Uwk30lIFGOEV3rPDAELwQkr/9YjkaCPDQhCcsrAYlF1v8W8jAEYeQDY7qn6tNGWudfq+YUEr6uq6FZzBpJMUfWFDatLHMCciw2mRC+k81qCCA1DzK4aUVfrJpxnloZWCPVnOgYy8L3GvKjE96HpweQoy7iwVQclVutLOEKJxA8gaRCjSzgNI2zhh3bQhzBCQQPIHGaHaUd96GJbZz3Smmjy16u6j3FuKyNxcBarxqWWfYFE0tVVO1Rl3t1Mb05V00MQCJ71YHpNaMcsjWAfkQvPPkaNC7LqTG7JAhGXTKYf+VDeXAX9IvURoAwtTFHvyYIxtnd5tPkywrPafcwbeSuGVwFau3b76NO7SHQrvqhfFE8kM0Wvpv8gVYiYBlxL+fW/34bgP6bIC7JR7YPDubcHCPzIp4+cum7U6NlhZgK7lua3KGLeFwE2m+HblDYWSHG2SAfINuwBBfxbJEIuWZbBH4fAExD7cvaGVyXyH0dhiAYc92z3ZDfUVv+jgb8HrHy7WVO/8BFcy9vuTz+nwADAGnOR39Yg/QkAAAAAElFTkSuQmCC" alt="Slim"/></a>
+              <h1>
+                Restful API example
+              </h1>
+              <h2>
+                Developed using Slim php microframework, RedBeanPHP ORM and (coming soon) Twig template engine
+              </h2>
             </header>
-            <h1>Welcome to Slim!</h1>
+            <section>
             <p>
-                Congratulations! Your Slim application is running. If this is
-                your first time using Slim, start with this <a href="http://www.slimframework.com/learn" target="_blank">"Hello World" Tutorial</a>.
+                This example application implements an API which manages a very simple customer database.
             </p>
-            <section>
-                <h2>Get Started</h2>
-                <ol>
-                    <li>The application code is in <code>index.php</code></li>
-                    <li>Read the <a href="http://docs.slimframework.com/" target="_blank">online documentation</a></li>
-                    <li>Follow <a href="http://www.twitter.com/slimphp" target="_blank">@slimphp</a> on Twitter</li>
-                </ol>
+            <p>
+                This database contains one single table, called customer.
+            </p>
+            <p>
+                The CRUD API methos allow to create, update, read, and delete any customer.
+            </p>
+            <p>
+                Customer&#39;s attributes are:
+                <ul>
+                  <li>id (autoincremental value assigned automatically by the database engine)</li>
+                  <li>email</li>
+                  <li>first_name</li>
+                  <li>last_name</li>
+                  <li>birth_date</li>
+                </ul>
+
+            </p>
+            <p>
+                <h2>Methods supported by the API</h2>
+                <ul>
+                    <li>GET /customer/{id_or_email} returns customer data</li>
+                    <li>POST /customer creates customer, at least the email must be passed as a parameter in the request</li>
+                    <li>PUT /customer/{id} updates customers params with the values passed by POST method by the request</li>
+                    <li>DELETE /customer/{id} deletes the customer whitch matches the id parameter</li>
+                </ul>
             </section>
             <section>
-                <h2>Slim Framework Community</h2>
-
-                <h3>Support Forum and Knowledge Base</h3>
-                <p>
-                    Visit the <a href="http://help.slimframework.com" target="_blank">Slim support forum and knowledge base</a>
-                    to read announcements, chat with fellow Slim users, ask questions, help others, or show off your cool
-                    Slim Framework apps.
-                </p>
-
-                <h3>Twitter</h3>
-                <p>
-                    Follow <a href="http://www.twitter.com/slimphp" target="_blank">@slimphp</a> on Twitter to receive the very latest news
-                    and updates about the framework.
-                </p>
-            </section>
-            <section style="padding-bottom: 20px">
-                <h2>Slim Framework Extras</h2>
-                <p>
-                    Custom View classes for Smarty, Twig, Mustache, and other template
-                    frameworks are available online in a separate repository.
-                </p>
-                <p><a href="https://github.com/codeguy/Slim-Extras" target="_blank">Browse the Extras Repository</a></p>
+              <p>Any contributions or suggestions can be done through Github at <a href="https://github.com/ferranmarlet/slim_restful_api">this repository</a></p>
+              <p>I hope it will be helfull if you are getting started with Slim for the first time.</p>
             </section>
         </body>
     </html>
