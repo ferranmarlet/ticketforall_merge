@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app='ticketforall'>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ticket For All!</title>
 
-    <!-- Bootstrap -->
-    <link href="css/Lato.css" rel="stylesheet">
+    <!-- Styles -->
+    <link href="fonts/Lato.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link href="css/bootswatch.min.css" rel="stylesheet">
-    <link href="fonts/Lato.css" rel="stylesheet">
   </head>
   
   <body>
+    <!-- Top navbar -->
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="" class="navbar-brand"><img src = "img/icon.png" width ="25" height"25" ></a>
-          <a href="" class="navbar-brand">Ticket For All!</a>
+          <a href="#/inici" class="navbar-brand"><img src = "img/icon.png" width ="25" height"25" ></a>
+          <a href="#/inici" class="navbar-brand">Ticket For All!</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -27,57 +27,62 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
+            <li>
+              <a href="#/ticket">Consultar Tiquet</a>
+            </li>
+            <li><a href="">Gestionar periodes d'absencia</a></li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">ExempleDrop <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="" id="A1">Consultes <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="">Bla</a></li>
-                <li class="divider"></li>
-                <li><a href="">Blabla</a></li>
-                <li><a href="">blablabla</a></li>
-                <li><a href="">bla2</a></li>
+                <li><a href="">Diaris bescanviats</a></li>
+                <li><a href="">Quioscs Propers</a></li>
+                <li><a href="">Tutorial d'utilitzacio</a></li>
               </ul>
-            </li>
-            <li>
-              <a href="">Absencies</a>
-            </li>
-            <li>
-              <a href="">Consultar Codi</a>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
             <li><a href=""><img src = "img/usr.png" width ="25" height"25" > Paco Martinez </a></li>
-            <li><a href="">(log out)</a></li>
+            <li><a href=""><img src = "img/logout.png" width ="15" height"15" ></a></li>
           </ul>
 
         </div>
       </div>
     </div>
+    
+    <!-- Content -->
+    <div ng-view></div>
+    
+    <!-- Footer -->
     <div class="container">
-      <div class="page-header" id="banner">
-        <div class="row">
-        <div class="col-lg-8 col-md-7 col-sm-6">
-            <h1>Aixo es un titol</h1>
-            <p class="lead">I aixo un subtitol.</p>
-        </div>
-      </div>
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <ul class="list-unstyled">
-                <li class="pull-right"><a href="#top">Back to top</a></li>
-                <li><a href="" >Avis legal</a></li>
-          	    <li><a href="" >Politica de privacitat</a></li>
-          	    <li><a href="" >Politica de cookies</a></li>
-          	    <li><a href="">Contactar</a></li>
-          	    <li><a href="">Consultar FAQ</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-      </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootswatch.js"></script>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-unstyled">
+                        <li><a href="#/avisLegal" >Avis legal</a></li>
+                        <li><a href="#privacitat" >Politica de privacitat</a></li>
+                        <li><a href="#/cookies" >Politica de cookies</a></li>
+                        <li><a href="#/contactar">Contactar</a></li>
+                        <li><a href="#/faq">Consultar FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Libs -->
+    <script src="js/libs/jquery-1.11.1.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/libs/bootswatch.js"></script>
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+    <script src="js/libs/angular-translate.min.js"></script>
+
+    <!-- App scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/services.js"></script>
+
   </body>
 </html>
