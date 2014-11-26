@@ -1,6 +1,6 @@
-var app = angular.module('ticketforall', ['controllers', 'services', 'directives', 'pascalprecht.translate', 'ngRoute']);
+﻿var app = angular.module('ticketforall', ['controllers', 'services', 'directives', 'pascalprecht.translate', 'ngRoute'])
 
-app.config(['$routeProvider', function ($routeProvider) {
+.config(function($translateProvider, $routeProvider) {
     $routeProvider
     .when('/faq', {
         templateUrl: 'frontEnd/views/faq.html',
@@ -8,7 +8,8 @@ app.config(['$routeProvider', function ($routeProvider) {
     })
     .when('/ticket', {
         templateUrl: 'frontEnd/views/codiDiari.html',
-        controller: 'codiDiariController'
+        controller: 'codiDiariController',
+        controllerAs:'codiDiariCtrl'
     })
     .when('/contactar', {
         templateUrl: 'frontEnd/views/informacioEmpresaEditorial.html'
@@ -23,9 +24,22 @@ app.config(['$routeProvider', function ($routeProvider) {
     })
     .when('/periodesAbsencia', {
         templateUrl: 'frontEnd/views/gestionarPeriodesAbsencia.html',
-        controller: 'periodesAbsenciaController'
+        controller: 'periodesAbsenciaController',
+        controllerAs: 'periodesAbsenciaCtrl'
+    })
+    .when('/perfil', {
+        templateUrl: 'frontEnd/views/gestionarPerfil.html',
+        controller: 'perfilController',
+        controllerAs: 'perfilCtrl'
     })
     .otherwise({
         redirectTo: '/inici'
     });
-}]);
+
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'frontEnd/languages/',
+        suffix: '.json'
+    });
+
+    $translateProvider.preferredLanguage('cat');
+});

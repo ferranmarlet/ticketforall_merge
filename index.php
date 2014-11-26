@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="es" ng-app='ticketforall'>
   <head>
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ticket For All!</title>
@@ -9,6 +10,7 @@
     <link href="frontEnd/fonts/Lato.css" rel="stylesheet">
     <link rel="stylesheet" href="frontEnd/css/bootstrap.css" media="screen">
     <link href="frontEnd/css/bootswatch.min.css" rel="stylesheet">
+	<link href="frontEnd/css/style.css" rel="stylesheet">
   </head>
   
   <body>
@@ -27,22 +29,22 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="#/ticket">Consultar Tiquet</a>
+              <a href="#/ticket">{{'OBT_TICKET'|translate}}</a>
             </li>
-            <li><a href="#/periodesAbsencia">Gestionar periodes d'absència</a></li>
+            <li><a href="#/periodesAbsencia">{{'GEST_PERIODES'|translate}}</a></li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="" id="A1">Consultes <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="" id="A1">{{'CONSULTES'|translate}} <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="">Diaris bescanviats</a></li>
-                <li><a href="">Quioscs Propers</a></li>
-                <li><a href="">Tutorial d'utilització</a></li>
+                <li><a href="">{{'DIARIS_BESCANV'|translate}}</a></li>
+                <li><a href="">{{'QUIOSCS_PROPERS'|translate}}</a></li>
+                <li><a href="">{{'TUTORIAL'|translate}}</a></li>
               </ul>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href=""><img src = "frontEnd/img/usr.png" width ="25" height"25" > Paco Martinez </a></li>
-            <li><a href=""><img src = "frontEnd/img/logout.png" width ="15" height"15" ></a></li>
+            <li><a href="#/perfil"><img src = "frontEnd/img/usr.png" width ="25" height"25" > Paco Martinez </a></li>
+            <li><a href="#/perfil"><img src = "frontEnd/img/logout.png" width ="15" height"15" ></a></li>
           </ul>
 
         </div>
@@ -58,11 +60,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="list-unstyled">
-                        <li><a href="#/avisLegal" >Avis legal</a></li>
-                        <li><a href="#privacitat" >Politica de privacitat</a></li>
-                        <li><a href="#/cookies" >Politica de cookies</a></li>
-                        <li><a href="#/contactar">Contactar</a></li>
-                        <li><a href="#/faq">Consultar FAQ</a></li>
+                        <li><a href="#/avisLegal" >{{'AVIS_LEGAL'|translate}}</a></li>
+                        <li><a href="#privacitat" >{{'POLITICA_P'|translate}}</a></li>
+                        <li><a href="#/cookies" >{{'POLITICA_C'|translate}}</a></li>
+                        <li><a href="#/contactar">{{'CONTACTAR'|translate}}</a></li>
+                        <li><a href="#/faq">{{'FAQ'|translate}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -76,6 +78,8 @@
     <script src="frontEnd/js/libs/angular.min.js"></script>
     <script src="frontEnd/js/libs/angular-route.min.js"></script>
     <script src="frontEnd/js/libs/angular-translate.min.js"></script>
+	<script src="frontEnd/js/libs/angular-translate-loader-static-files.min.js"></script>
+
 
     <!-- App scripts -->
     <script src="frontEnd/js/app.js"></script>

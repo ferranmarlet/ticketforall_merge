@@ -1,4 +1,4 @@
-var services = angular.module('services', []);
+﻿var services = angular.module('services', []);
 
 services.factory("ticketForAllService", function ($http) {
     var service = {};
