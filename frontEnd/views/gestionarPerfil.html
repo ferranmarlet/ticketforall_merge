@@ -1,0 +1,25 @@
+﻿<div class="container content-page">
+    <div class="page-header" id="banner">
+        <div class="row row-centered">
+            <div class="col-lg-10 col-centered">
+                <h1 style ="text-align:center">{{'GEST_PERFIL'|translate}}</h1>
+                <br> <br> 
+            </div>
+        </div>
+        <div class="row row-centered">
+            <div class="col-lg-10 col-centered">
+                <h3 >{{'GEST_IDIOMA'|translate}} :&nbsp;
+                <div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    {{'IDIOMA_ACTUAL'|translate}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a ng-click="perfilCtrl.canviIdioma('cat')">{{'CATALA'|translate}}</a></li>
+    <li><a ng-click="perfilCtrl.canviIdioma('es')">{{'CASTELLA'|translate}}</a></li>
+    <li><a ng-click="perfilCtrl.canviIdioma('eus')">{{'EUSKERA'|translate}}</a></li>
+    <li><a ng-click="perfilCtrl.canviIdioma('en')">{{'ANGLES'|translate}}</a></li>
+  </ul> </h3>
+</div>
+            </div>
+    </div>
+</div>

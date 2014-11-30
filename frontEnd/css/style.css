@@ -1,0 +1,21 @@
+﻿.row-centered {
+    text-align:center;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.content-page {
+    height:450px;
+}
+
+.boto-accio {
+	margin-left:5px;
+	margin-right:5px;
+}
