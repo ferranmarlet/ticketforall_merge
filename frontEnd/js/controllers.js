@@ -1,13 +1,46 @@
 ﻿var controllers = angular.module('controllers', []);
 
 
-controllers.controller('loginController', function ($scope, $location) {
-    this.logged = false;
-    this.login = function () {
-        $scope.show = true;
-        $location.path('/inici');
+controllers.controller("mainController", function ($scope, $location, USER_ROLES, AUTH_EVENTS, Session) {
+    $scope.currentUser = { userId: Session.userId, role: Session.userRole };
+    $scope.setCurrentUser = function (user) {
+        $scope.currentUser = user;
     };
 
+    $scope.logOut = function () {
+        $scope.currentUser = null;
+        Session.clear();
+        $location.path('/login');
+    }
+
+    $scope.$on(AUTH_EVENTS.notAuthenticated, function () {
+        $location.path('/login');
+    });
+    $scope.$on(AUTH_EVENTS.notAuthorized, function () {
+        $location.path('/inici');
+    });
+})
+
+controllers.controller('loginController', function ($scope, $rootScope, $location, Session, AUTH_EVENTS, ticketForAllService) {
+
+    $scope.username = "";
+    $scope.password = "";
+    $scope.remember = false;
+
+    this.login = function () {
+        /*
+        ticketForAllService.loginUser($scope.username, $scope.password).then(function (user) {
+        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+        $scope.setCurrentUser(user);
+        }, function () {
+        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+        });*/
+        var user = ticketForAllService.loginUser($scope.username, $scope.password);
+        //si el login es correcte (es fa amb el promise comentat de dalt)
+        if($scope.remember)Session.saveSession();
+        $scope.setCurrentUser(user);
+        $location.path('/inici');
+    };
 });
 
 

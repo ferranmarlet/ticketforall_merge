@@ -13,12 +13,12 @@
 	<link href="frontEnd/css/style.css" rel="stylesheet">
   </head>
   
-  <body>
+  <body ng-controller = "mainController">
     <!-- Top navbar -->
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top" ng-show="currentUser.userId != null">
       <div class="container">
         <div class="navbar-header">
-          <a href="#/inici" class="navbar-brand"><img src = "frontEnd/img/icon.png" width ="25" height"25" ></a>
+          <a href="#/inici" class="navbar-brand"><img src = "frontEnd/img/navbarLogo.png" ></a>
           <a href="#/inici" class="navbar-brand">Ticket For All!</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
@@ -42,9 +42,9 @@
             </li>
           </ul>
 
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/perfil"><img src = "frontEnd/img/usr.png" width ="25" height"25" > Paco Martinez </a></li>
-            <li><a href="#/perfil"><img src = "frontEnd/img/logout.png" width ="15" height"15" ></a></li>
+          <ul class="nav navbar-nav navbar-right" >
+            <li><a href="#/perfil"><img src = "frontEnd/img/usr.png" width ="25" height"25" > {{currentUser.userId}} </a></li>
+            <li><a><img src = "frontEnd/img/logout.png" ng-click='logOut()' width ="15" height"15" style ="cursor: pointer"></a></li>
           </ul>
 
         </div>
@@ -55,7 +55,7 @@
     <div ng-view></div>
     
     <!-- Footer -->
-    <div class="container">
+    <div class="container" ng-show="currentUser.userId != null">
         <footer>
             <div class="row">
                 <div class="col-lg-12">

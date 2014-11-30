@@ -1,10 +1,73 @@
 ﻿var services = angular.module('services', []);
 
-services.factory("ticketForAllService", function ($http) {
+services.service("Session", function() {
+  this.restoreUser = function() {
+    if(localStorage.userId) {
+        this.id = localStorage.id;
+        this.userId = localStorage.userId;
+        this.userRole = localStorage.userRole;
+    }
+    else if(sessionStorage.userId) {
+        this.id = sessionStorage.id;
+        this.userId = sessionStorage.userId;
+        this.userRole = sessionStorage.userRole;
+    }
+    else {
+        this.id = null;
+        this.userId = null;
+        this.userRole = 'guest';
+    }
+  };
+
+  this.create = function (sessionId, userId, userRole) {
+    this.id = sessionId;
+    this.userId = userId;
+    this.userRole = userRole;
+    sessionStorage.id = sessionId;
+    sessionStorage.userId = userId;
+    sessionStorage.userRole = userRole;
+  };
+
+  this.clear = function () {
+    this.id = null;
+    this.userId = null;
+    this.userRole = null;
+    localStorage.clear();
+    sessionStorage.clear();
+  };
+
+  this.saveSession = function() {
+     localStorage.id =  this.id;
+     localStorage.userId = this.userId;
+     localStorage.userRole = this.userRole;
+  };
+
+  this.isAuthenticated = function() {
+    return !!this.userId;
+  };
+  this.isAuthorized = function (authorizedRoles) {
+    if (!angular.isArray(authorizedRoles)) {
+        authorizedRoles = [authorizedRoles];
+    }
+    return (this.isAuthenticated() && (authorizedRoles.indexOf(this.userRole) != -1));
+  };
+  return this;
+});
+
+services.factory("ticketForAllService", function ($http, Session) {
     var service = {
 
         loginUser: function (name, pass) {
-
+            var id = "12345a";
+            var user = {userId: "Paco", role: "subscriptor"};
+            Session.create(id, user.userId, user.role);
+            return user;
+            /*return $http
+                .post('/login', credentials)
+                .then(function (res) {
+                    Session.create(res.data.id, res.data.user.id, res.data.user.role);
+                    return res.data.user;
+              });*/
         },
 
         getPeriodesAbsencia: function () {
@@ -33,8 +96,6 @@ services.factory("ticketForAllService", function ($http) {
                     {question: "Lorem ipsum dolor sit amet?", answer: "Duis tellus. Donec ante dolor."},
                     {question: "Lorem ipsum dolor sit amet?", answer: "Duis tellus. Donec ante dolor."}];
         },
-
-
     };
 
     return service;
