@@ -56,7 +56,7 @@
     
     <!-- Footer -->
     <div class="container" ng-show="currentUser.userId != null">
-        <footer>
+        <footer style="margin-bottom:10px">
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="list-unstyled">

@@ -46,6 +46,7 @@ controllers.controller('loginController', function ($scope, $rootScope, $locatio
 
 controllers.controller('faqController', function (ticketForAllService) {
     this.faqs = ticketForAllService.getFAQ();
+    console.dir(this.faqs);
 });
 
 

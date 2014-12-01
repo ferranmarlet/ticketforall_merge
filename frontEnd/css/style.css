@@ -12,10 +12,24 @@
 }
 
 .content-page {
-    height:450px;
+    height: auto;
 }
 
-.boto-accio {
-	margin-left:5px;
-	margin-right:5px;
+.content-page-fixed {
+    height: 460px;
+}
+
+@media screen and (max-width: 500px) {
+	.page-header h1 {
+		font-size: 2em;
+	}
+	.content-page-fixed {
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.taulaPeriodes {
+		font-size: 14px;
+	}
 }
