@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="frontEnd/css/bootstrap.css" media="screen">
     <link href="frontEnd/css/bootswatch.min.css" rel="stylesheet">
 	<link href="frontEnd/css/style.css" rel="stylesheet">
+	<link href="frontEnd/css/datepicker3.css" rel="stylesheet">
   </head>
   
   <body ng-controller = "mainController">
@@ -75,6 +76,9 @@
     <script src="frontEnd/js/libs/jquery-1.11.1.min.js"></script>
     <script src="frontEnd/js/libs/bootstrap.min.js"></script>
     <script src="frontEnd/js/libs/bootswatch.js"></script>
+	<script src="frontEnd/js/libs/bootstrap-datepicker.js"></script>
+	<script src="frontEnd/js/libs/bootstrap-datepicker.ca.js"></script>
+	<script src="frontEnd/js/libs/bootstrap-datepicker.es.js"></script>
     <script src="frontEnd/js/libs/angular.min.js"></script>
     <script src="frontEnd/js/libs/angular-route.min.js"></script>
     <script src="frontEnd/js/libs/angular-translate.min.js"></script>

@@ -49,7 +49,7 @@
         suffix: '.json'
     });
 
-    $translateProvider.preferredLanguage('cat');
+    $translateProvider.preferredLanguage('ca');
 });
 
 app.constant('AUTH_EVENTS', {

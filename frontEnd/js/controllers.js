@@ -3,6 +3,7 @@
 
 controllers.controller("mainController", function ($scope, $location, USER_ROLES, AUTH_EVENTS, Session) {
     $scope.currentUser = { userId: Session.userId, role: Session.userRole };
+    $scope.idioma = "ca";
     $scope.setCurrentUser = function (user) {
         $scope.currentUser = user;
     };
@@ -55,13 +56,26 @@ controllers.controller('codiDiariController', function (ticketForAllService) {
 });
 
 
-controllers.controller('periodesAbsenciaController', function (ticketForAllService) {
+controllers.controller('periodesAbsenciaController', function ($scope, ticketForAllService) {
+    this.editing = -1;
     this.contingut = ticketForAllService.getPeriodesAbsencia();
+    $scope.dates = { dataInici: "", dataFi: "" };
 
-    this.editarPeriode = function () {
-        //mostrar formulari d'edició 
-        console.log("esticEditant");
+    this.editarPeriode = function (indx) {
+        this.editing = indx;
+        console.log(this.contingut[indx].dataInici);
+        $scope.dates.dataInici = this.contingut[indx].dataInici;
+        $scope.dates.dataFi = this.contingut[indx].dataFi;
     };
+
+    this.isEditing = function (indx) {
+        return this.editing == indx;
+    };
+
+    this.sendEdit = function () {
+        this.editing = -1;
+    };
+
     this.enviarEdicioPeriode = function () {
         //agafa les dataini, datafi del formulari i les envia a la api
         ticketForallService.updatePeriodeAbsencia(dataini, datafi);
@@ -82,6 +96,8 @@ controllers.controller('periodesAbsenciaController', function (ticketForAllServi
 
 controllers.controller("perfilController", function ($translate) {
     this.canviIdioma = function (langKey) {
+        $scope.idioma = langKey;
         $translate.use(langKey);
+        //s'ha de guardar al usuari
     };
 });
