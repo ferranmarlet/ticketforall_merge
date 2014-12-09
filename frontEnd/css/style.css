@@ -2,6 +2,21 @@
     text-align:center;
 }
 
+.video {
+	text-align:center;
+   	position: relative;
+   	padding-bottom: 56.25%;
+   	overflow: hidden;
+}
+
+.video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .col-centered {
     display:inline-block;
     float:none;
@@ -17,6 +32,16 @@
 
 .content-page-fixed {
     height: 460px;
+}
+
+p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+ul {
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 @media screen and (max-width: 500px) {

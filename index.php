@@ -62,8 +62,6 @@
                 <div class="col-lg-12">
                     <ul class="list-unstyled">
                         <li><a href="#/avisLegal" >{{'AVIS_LEGAL'|translate}}</a></li>
-                        <li><a href="#privacitat" >{{'POLITICA_P'|translate}}</a></li>
-                        <li><a href="#/cookies" >{{'POLITICA_C'|translate}}</a></li>
                         <li><a href="#/contactar">{{'CONTACTAR'|translate}}</a></li>
                         <li><a href="#/faq">{{'FAQ'|translate}}</a></li>
                     </ul>

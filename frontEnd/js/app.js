@@ -5,7 +5,13 @@
     .when('/faq', {
         templateUrl: 'frontEnd/views/faq.html',
         controller: 'faqController',
-	controllerAs: 'faqCtrl',
+	    controllerAs: 'faqCtrl',
+        data: { authorizedRoles: [USER_ROLES.admin, USER_ROLES.subscriptor, USER_ROLES.quiosquer] }
+    })
+    .when('/avisLegal', {
+        templateUrl: 'frontEnd/views/avisLegal.html',
+        controller: 'avisLegal',
+        controllerAs: 'avisLegalCtrl',
         data: { authorizedRoles: [USER_ROLES.admin, USER_ROLES.subscriptor, USER_ROLES.quiosquer] }
     })
     .when('/ticket', {
