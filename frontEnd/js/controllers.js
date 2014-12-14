@@ -52,7 +52,7 @@ controllers.controller('faqController', function (ticketForAllService) {
 
 
 controllers.controller('codiDiariController', function (ticketForAllService) {
-    this.codi_diari = ticketForAllService.getCodiDiari(); 
+    this.codi_diari = ticketForAllService.getCodiDiari();
 });
 
 
@@ -94,7 +94,7 @@ controllers.controller('periodesAbsenciaController', function ($scope, ticketFor
     };
 });
 
-controllers.controller("perfilController", function ($translate) {
+controllers.controller("perfilController", function ($translate, $scope) {
     this.canviIdioma = function (langKey) {
         $scope.idioma = langKey;
         $translate.use(langKey);
