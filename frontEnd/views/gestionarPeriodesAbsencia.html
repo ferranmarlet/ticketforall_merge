@@ -7,7 +7,7 @@
                 <table class="table table-striped table-hover">
                 <thead>
                   <tr><th style= "text-align:center">{{'DATA_INI'|translate}}</th> <th style= "text-align:center">{{'DATA_FI'|translate}}</th>
-                   <th style= "text-align:center"> 	<button ng-click ='periodesAbsenciaCtrl.esborrarPeriode($index)'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                   <th style= "text-align:center"> 	<button ng-click ='periodesAbsenciaCtrl.crearPeriode()'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 					</th>
                   </tr>
                 </thead>
@@ -16,11 +16,11 @@
                   <tr ng-repeat = "cont in contingut">
                     <td style= "text-align:center; min-width:75px;" ng-hide="periodesAbsenciaCtrl.isEditing($index)">{{cont.startdate}}</td>
                     <td style= "text-align:center" ng-show="periodesAbsenciaCtrl.isEditing($index)">
-                        <input type="text"  data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-language= {{idioma}} style="width:75px; height:27px;" ng-model= "dates.dataInici">
+                        <input type="text"  data-provide="datepicker" data-date-format="dd-mm-yy" data-date-language= {{idioma}} style="width:85px; height:27px;" ng-model= "dates.dataInici">
                     </td>
                     <td style= "text-align:center" ng-hide="periodesAbsenciaCtrl.isEditing($index)">{{cont.enddate}}</td>
                     <td style= "text-align:center; min-width:75px;"  ng-show="periodesAbsenciaCtrl.isEditing($index)">
-                        <input type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-language= {{idioma}}  data-date-start-date={{dates.dataInici}}  style="width:75px; height:27px;" ng-model= "dates.dataFi">
+                        <input type="text" data-provide="datepicker" data-date-format="dd-mm-yy" data-date-language= {{idioma}}  data-date-start-date={{dates.dataInici}}  style="width:85px; height:27px;" ng-model= "dates.dataFi">
                     </td>
                     <td style= "text-align:center; min-width:80px;">
 						<button ng-click ='periodesAbsenciaCtrl.editarPeriode($index)' ng-hide="periodesAbsenciaCtrl.isEditing($index)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
