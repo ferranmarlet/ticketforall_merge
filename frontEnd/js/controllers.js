@@ -8,13 +8,16 @@ controllers.controller("mainController", function ($scope, $location, USER_ROLES
         $scope.currentUser = user;
     };
     $scope.isAdmin = function() {
-      return $scope.currentUser.role == USER_ROLES.admin;
+      if($scope.currentUser) return $scope.currentUser.role == USER_ROLES.admin;
+      else return false;
    };
    $scope.isQuiosquer = function() {
-      return $scope.currentUser.role == USER_ROLES.quiosquer;
+      if($scope.currentUser)return $scope.currentUser.role == USER_ROLES.quiosquer;
+      else return false;
    }
    $scope.isSubscriptor = function() {
-      return $scope.currentUser.role == USER_ROLES.subscriptor;
+      if($scope.currentUser)return $scope.currentUser.role == USER_ROLES.subscriptor;
+      else return false;
    }
 
     $scope.logOut = function () {
@@ -100,6 +103,7 @@ controllers.controller('periodesAbsenciaController', function ($scope, ticketFor
 
     this.enviarEdicioPeriode = function () {
         //agafa les dataini, datafi del formulari i les envia a la api
+        this.editing = -1;
         ticketForAllService.updatePeriodeAbsencia($scope.periodeId, $scope.dates.dataInici, $scope.dates.dataFi).then(function(data) {
            if(data) {
              alert("Els canvis s'han realitzat correctament");
