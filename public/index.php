@@ -32,9 +32,6 @@ require '../vendor/slim/slim/Slim/Slim.php';
  */
 $app = new \Slim\Slim();
 
-//json content types:
-//$app->add(new Slim_Middleware_ContentTypes());
-
 /*
 * Add singleton entities to slim container
 */
