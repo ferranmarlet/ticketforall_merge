@@ -114,15 +114,13 @@ $app->put('/api/periode_absencia/:token',function ($token) use ($app) {
 
 });
 
-$app->delete('/api/periode_absencia/:token',function ($token) use ($app) {
+$app->delete('/api/periode_absencia/:token/:id',function ($token,$id) use ($app) {
 
   $dto = $app->dto;
-  $data = $app->request()->getBody();
-  $data = $dto->jsonToArray($data);
 
   $controllerFactory = $app->controllerFactory;
   $gestioPeriodesAbsenciaCtrl = $controllerFactory->getGestioPeriodesAbsenciaCtrl();
-  $result = $gestioPeriodesAbsenciaCtrl->eliminarPeriode($data['id'],$token);
+  $result = $gestioPeriodesAbsenciaCtrl->eliminarPeriode($id,$token);
 
   if($result){
       $app->response->setStatus(200);
