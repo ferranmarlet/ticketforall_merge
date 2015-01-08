@@ -29,9 +29,7 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav" ng-show='isSubscriptor()'>
-            <li>
-              <a href="#/ticket">{{'OBT_TICKET'|translate}}</a>
-            </li>
+            <li><a href="#/ticket">{{'OBT_TICKET'|translate}}</a></li>
             <li><a href="#/periodesAbsencia">{{'GEST_PERIODES'|translate}}</a></li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="" id="A1">{{'CONSULTES'|translate}} <span class="caret"></span></a>

@@ -8,13 +8,13 @@ controllers.controller("mainController", function ($scope, $location, USER_ROLES
         $scope.currentUser = user;
     };
     $scope.isAdmin = function() {
-      $scope.currentUser.role == USER_ROLES.admin;
+      return $scope.currentUser.role == USER_ROLES.admin;
    };
    $scope.isQuiosquer = function() {
-      $scope.currentUser.role == USER_ROLES.quiosquer;
+      return $scope.currentUser.role == USER_ROLES.quiosquer;
    }
    $scope.isSubscriptor = function() {
-      $scope.currentUser.role == USER_ROLES.subscriptor;
+      return $scope.currentUser.role == USER_ROLES.subscriptor;
    }
 
     $scope.logOut = function () {
@@ -63,8 +63,15 @@ controllers.controller('faqController', function (ticketForAllService) {
 });
 
 
-controllers.controller('codiDiariController', function (ticketForAllService) {
-    this.codi_diari = ticketForAllService.getCodiDiari();
+controllers.controller('codiDiariController', function (ticketForAllService, $scope) {
+   ticketForAllService.getCodiDiari().then(function(data) {
+      if(data != 0) {
+         $scope.codi_diari = data;
+      }
+      else {
+         $scope.codi_diari = "No tens un periode d'absència actualment.";
+      }
+   });
 });
 
 
