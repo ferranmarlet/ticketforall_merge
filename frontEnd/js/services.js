@@ -55,9 +55,14 @@ services.service("Session", function() {
 });
 
 services.factory("ticketForAllService", function ($http, Session) {
+    var url = 'http://ticketforallbackend.herokuapp.com/api/';
     var service = {
 
         loginUser: function (name, pass) {
+            var msg = {"username":"ferran","password":"1111"};
+            $http.post(url + 'users/login', JSON.stringify(msg)).then(function (response){
+               console.dir(response);
+            });
             var id = "12345a";
             var user = {userId: "Paco", role: "subscriptor"};
             Session.create(id, user.userId, user.role);
@@ -100,4 +105,3 @@ services.factory("ticketForAllService", function ($http, Session) {
 
     return service;
 });
-
