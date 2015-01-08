@@ -13,7 +13,7 @@
 	<link href="frontEnd/css/style.css" rel="stylesheet">
 	<link href="frontEnd/css/datepicker3.css" rel="stylesheet">
   </head>
-  
+
   <body ng-controller = "mainController">
     <!-- Top navbar -->
     <div class="navbar navbar-default navbar-fixed-top" ng-show="currentUser.userId != null">
@@ -28,7 +28,7 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav" ng-show='isSubscriptor()'>
             <li>
               <a href="#/ticket">{{'OBT_TICKET'|translate}}</a>
             </li>
@@ -42,6 +42,15 @@
               </ul>
             </li>
           </ul>
+          <ul class="nav navbar-nav" ng-show='isAdmin()'>
+             <li><a href="">{{'GEST_USUARIS'|translate}}</a></li>
+             <li><a href="">{{'DIARIS_BESCANV'|translate}}</a></li>
+             <li><a href="">{{'USUARIS_PERIODES_ABS'|translate}}</a></li>
+          </ul>
+          <ul class="nav navbar-nav" ng-show='isQuiosquer()'>
+             <li><a href="">{{'BESCANV_DIARI'|translate}}</a></li>
+             <li><a href="">{{'DIARIS_BESCANV'|translate}}</a></li>
+          </ul>
 
           <ul class="nav navbar-nav navbar-right" >
             <li><a href="#/perfil"><img src = "frontEnd/img/usr.png" width ="25" height"25" > {{currentUser.userId}} </a></li>
@@ -51,10 +60,10 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Content -->
     <div ng-view></div>
-    
+
     <!-- Footer -->
     <div class="container" ng-show="currentUser.userId != null">
         <footer style="margin-bottom:10px">
