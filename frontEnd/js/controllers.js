@@ -90,8 +90,8 @@ controllers.controller('periodesAbsenciaController', function ($scope, ticketFor
 
     this.editarPeriode = function (indx) {
         this.editing = indx;
-        $scope.dates.dataInici = $scope.contingut[indx].startdate;
-        $scope.dates.dataFi = $scope.contingut[indx].enddate;
+        $scope.dates.dataInici = '';
+        $scope.dates.dataFi = '';
         $scope.periodeId = $scope.contingut[indx].id;
     };
 
@@ -120,6 +120,7 @@ controllers.controller('periodesAbsenciaController', function ($scope, ticketFor
           });
        }
        else {
+          $scope.creating = false;
           ticketForAllService.setPeriodeAbsencia($scope.dates.dataInici, $scope.dates.dataFi).then(function(data) {
              if(data) {
                 alert("El periode s'ha afegit correctament");
@@ -139,7 +140,7 @@ controllers.controller('periodesAbsenciaController', function ($scope, ticketFor
         $scope.contingut.unshift({startdate:'', enddate:''});
         $scope.dates.dataInici = '';
         $scope.dates.dataFi='';
-        $scope.editing = 0;
+        this.editing = 0;
     };
 
     this.esborrarPeriode = function (indx) {
