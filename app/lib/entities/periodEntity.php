@@ -61,7 +61,7 @@ class periodEntity{
       $userData = $userEntity->getUserDataByToken($user_token);
 
       if(!is_null($userData)) {
-        
+
         $period = R::findOne('period',' id = ? AND user_id = ?',array($id,$userData['id']));
 
         if(!is_null($period)) {
@@ -86,7 +86,7 @@ class periodEntity{
       $this->app = \Slim\Slim::getInstance();
       $userEntity = $this->app->entityFactory->getUserEntity();
 
-      $userData = $userEntity->getUserDataByToken($token);
+      $userData = $userEntity->getUserDataByToken($user_token);
 
       if(!is_null($userData)) {
         $period = R::findOne('period','id = ? AND user_id = ?', array($id,$userData['id']));
