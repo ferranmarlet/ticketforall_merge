@@ -118,6 +118,8 @@ $app->delete('/api/periode_absencia/:token/:id',function ($token,$id) use ($app)
 
   $dto = $app->dto;
 
+  echo "token: ".$token." id ".$id;
+
   $controllerFactory = $app->controllerFactory;
   $gestioPeriodesAbsenciaCtrl = $controllerFactory->getGestioPeriodesAbsenciaCtrl();
   $result = $gestioPeriodesAbsenciaCtrl->eliminarPeriode($id,$token);
