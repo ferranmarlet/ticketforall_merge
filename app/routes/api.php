@@ -118,8 +118,6 @@ $app->delete('/api/periode_absencia/:token/:id',function ($token,$id) use ($app)
 
   $dto = $app->dto;
 
-  echo "token: ".$token." id ".$id;
-
   $controllerFactory = $app->controllerFactory;
   $gestioPeriodesAbsenciaCtrl = $controllerFactory->getGestioPeriodesAbsenciaCtrl();
   $result = $gestioPeriodesAbsenciaCtrl->eliminarPeriode($id,$token);
@@ -132,7 +130,7 @@ $app->delete('/api/periode_absencia/:token/:id',function ($token,$id) use ($app)
   else {
       $app->response->setStatus(400); // No hi han periodes
       $app->response->headers->set('Content-Type', 'application/json');
-      $app->response->setBody($dto->toJson(array('result'=>'error','message'=>'period not found or wrong user token')));
+      $app->response->setBody($dto->toJson(array('result'=>'error','message'=>"token: ".$token." id ".$id.'period not found or wrong user token')));
   }
 
 });
