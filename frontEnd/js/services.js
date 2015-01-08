@@ -58,20 +58,16 @@ services.factory("ticketForAllService", function ($http, Session) {
     var service = {
 
         loginUser: function (name, pass) {
-            var msg = {"username":"ferran","password":"1111"};
-            $http.post('/public/api/users/login', JSON.stringify(msg)).then(function (response){
-               console.dir(response);
+            var msg = {"username":name,"password":pass};
+            return $http.post('/public/api/users/login', JSON.stringify(msg)).then(function (response){
+               var user = null;
+               if(response.data.result =='ok'){
+                  var id = response.data.token;
+                  user = {userId: name, role: response.data.rol};
+                  Session.create(id, user.userId, user.role);
+               }
+               return user;
             });
-            var id = "12345a";
-            var user = {userId: "Paco", role: "subscriptor"};
-            Session.create(id, user.userId, user.role);
-            return user;
-            /*return $http
-                .post('/login', credentials)
-                .then(function (res) {
-                    Session.create(res.data.id, res.data.user.id, res.data.user.role);
-                    return res.data.user;
-              });*/
         },
 
         getPeriodesAbsencia: function () {

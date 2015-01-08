@@ -29,18 +29,22 @@ controllers.controller('loginController', function ($scope, $rootScope, $locatio
     $scope.remember = false;
 
     this.login = function () {
-        /*
         ticketForAllService.loginUser($scope.username, $scope.password).then(function (user) {
-        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-        $scope.setCurrentUser(user);
+           if(user != null){
+             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+             $scope.setCurrentUser(user);
+             if($scope.remember)Session.saveSession();
+             $scope.setCurrentUser(user);
+             $location.path('/inici');
+          }
+          else {
+             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+             alert("Nom d'usuari o contrassenya erronis");
+          }
         }, function () {
-        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-        });*/
-        var user = ticketForAllService.loginUser($scope.username, $scope.password);
-        //si el login es correcte (es fa amb el promise comentat de dalt)
-        if($scope.remember)Session.saveSession();
-        $scope.setCurrentUser(user);
-        $location.path('/inici');
+           alert("Nom d'usuari o contrassenya erronis");
+           $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+        });
     };
 });
 
