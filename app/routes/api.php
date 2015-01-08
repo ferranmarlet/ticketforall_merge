@@ -6,7 +6,10 @@
 $app->post('/api/users/login',function () use ($app) {
 
   $dto = $app->dto;
-  $data = $dto->jsonToArray($app->request()->params()['data']);
+  //$data = $dto->jsonToArray($app->request()->params()['data']);
+
+  $data = $app->request()->getBody();
+  //$data = $dto->jsonToArray($body);
 
   if(isset($data['username']) && !is_null($data['username']) && isset($data['password']) && !is_null($data['password'])){
 
