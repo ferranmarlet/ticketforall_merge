@@ -8,9 +8,7 @@ $app->post('/api/users/login',function () use ($app) {
   $dto = $app->dto;
 
   $data = $app->request()->getBody();
-
-  echo '<pre>';
-  print_r($data);
+  $data = $dto->jsonToArray($data);
 
   if(isset($data['username']) && !is_null($data['username']) && isset($data['password']) && !is_null($data['password'])){
 
