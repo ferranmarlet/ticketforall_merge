@@ -21,5 +21,8 @@
 	"CASTELLA":		"Castellà",
 	"EUSKERA":		"Euskera",
 	"ANGLES":		"Anglès",
-	"IDIOMA_ACTUAL":	"Català"
+	"IDIOMA_ACTUAL":	"Català",
+	"GEST_USUARIS":	"Gestionar Usuaris",
+	"USUARIS_PERIODES_ABS": "Consultar subscriptors absents",
+	"BESCANV_DIARI" : "Bescanviar diari"
 }

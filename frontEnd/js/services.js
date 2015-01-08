@@ -71,23 +71,36 @@ services.factory("ticketForAllService", function ($http, Session) {
         },
 
         getPeriodesAbsencia: function () {
-            return [{ dataInici: "20-12-03", dataFi: "20-12-03" }, { dataInici: "20-12-03", dataFi: "20-12-03" }, { dataInici: "20-12-03", dataFi: "20-12-03"}];
+          return $http.get('/public/api/periode_absencia/'+Session.id).then(function(response) {
+             return response.data;
+          });
         },
 
         setPeriodeAbsencia: function(dataini, datafi) {
-
+          var msg = {"nomUsuari":Session.userId,"dataIni":dataini,"dataFi":datafi};
+          return $http.post('/public/api/periode_absencia/'+Session.id, JSON.stringify(msg)).then(function(response) {
+             return response.data.result =='ok';
+          });
         },
 
-        deletePeriodeAbsencia: function(dataini, datafi) {
-
+        deletePeriodeAbsencia: function(id) {
+          return $http.delete('/public/api/periode_absencia/'+Session.id +'/'+id).then(function(response) {
+             return response.data.result =='ok';
+          });
         },
 
-        updatePeriodeAbsencia: function(dataini, datafi) {
-            return true;
+        updatePeriodeAbsencia: function(id, dataini, datafi) {
+           var msg = {"id":id,"dataIni":dataini,"dataFi":datafi};
+           return $http.put('/public/api/periode_absencia/'+Session.id, JSON.stringify(msg)).then(function(response) {
+             return response.data.result =='ok';
+          });
         },
 
         getCodiDiari: function () {
-            return {codi:'456789', validesa:'26-11-2014'};
+           return $http.get('/public/api/codi_diari/'+Session.id).then(function(response) {
+             if(response.data.result=='ok') return response.data.code;
+             else return 0;
+           });
         },
 
         getFAQ: function () {

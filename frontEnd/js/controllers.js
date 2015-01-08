@@ -7,6 +7,15 @@ controllers.controller("mainController", function ($scope, $location, USER_ROLES
     $scope.setCurrentUser = function (user) {
         $scope.currentUser = user;
     };
+    $scope.isAdmin = function() {
+      $scope.currentUser.role == USER_ROLES.admin;
+   };
+   $scope.isQuiosquer = function() {
+      $scope.currentUser.role == USER_ROLES.quiosquer;
+   }
+   $scope.isSubscriptor = function() {
+      $scope.currentUser.role == USER_ROLES.subscriptor;
+   }
 
     $scope.logOut = function () {
         $scope.currentUser = null;
@@ -61,14 +70,17 @@ controllers.controller('codiDiariController', function (ticketForAllService) {
 
 controllers.controller('periodesAbsenciaController', function ($scope, ticketForAllService) {
     this.editing = -1;
-    this.contingut = ticketForAllService.getPeriodesAbsencia();
+    ticketForAllService.getPeriodesAbsencia().then(function(data) {
+      $scope.contingut = data;
+    });
     $scope.dates = { dataInici: "", dataFi: "" };
+    $scope.periodeId ='';
 
     this.editarPeriode = function (indx) {
         this.editing = indx;
-        console.log(this.contingut[indx].dataInici);
-        $scope.dates.dataInici = this.contingut[indx].dataInici;
-        $scope.dates.dataFi = this.contingut[indx].dataFi;
+        $scope.dates.dataInici = $scope.contingut[indx].startdate;
+        $scope.dates.dataFi = $scope.contingut[indx].enddate;
+        $scope.periodeId = $scope.contingut[indx].id;
     };
 
     this.isEditing = function (indx) {
@@ -81,19 +93,39 @@ controllers.controller('periodesAbsenciaController', function ($scope, ticketFor
 
     this.enviarEdicioPeriode = function () {
         //agafa les dataini, datafi del formulari i les envia a la api
-        ticketForallService.updatePeriodeAbsencia(dataini, datafi);
+        ticketForAllService.updatePeriodeAbsencia($scope.periodeId, $scope.dates.dataInici, $scope.dates.dataFi).then(function(data) {
+           if(data) {
+             alert("Els canvis s'han realitzat correctament");
+             ticketForAllService.getPeriodesAbsencia().then(function(data) {
+                $scope.contingut = data;
+             });
+          }
+          else {
+             alert("Hi ha algut un error. Torna-ho a provar més tard.");
+          }
+       });
     };
+
     this.crearPeriode = function () {
         //mostrar formulari de creacio
         console.log("esticEditant");
     };
-    this.enviarDadesCreacioPeriode = function () {
+    this.enviarDadesCreacioPeriode = function (indx) {
         //agafa les dataini, datafi del formulari i les envia a la api
         ticketForallService.modifyPeriodeAbsencia(dataini, datafi);
     };
-    this.esborrarPeriode = function () {
+    this.esborrarPeriode = function (indx) {
         //mostrar missatge de confirmació de l'esborrat
-        console.log("esticEsborrant");
+        var r = confirm("De veritat vols esborrar el periode?");
+        if (r) {
+           ticketForAllService.deletePeriodeAbsencia($scope.contingut[indx].id).then(function(data) {
+             if(data) {
+                ticketForAllService.getPeriodesAbsencia().then(function(data) {
+                   $scope.contingut = data;
+                });
+             }
+          });
+        }
     };
 });
 
