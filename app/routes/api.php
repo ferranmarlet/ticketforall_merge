@@ -6,7 +6,6 @@
 $app->post('/api/users/login',function () use ($app) {
 
   $dto = $app->dto;
-
   $data = $app->request()->getBody();
   $data = $dto->jsonToArray($data);
 
@@ -42,7 +41,8 @@ $app->post('/api/users/login',function () use ($app) {
 $app->post('/api/periode_absencia/:token',function ($token) use ($app) {
 
   $dto = $app->dto;
-  $data = $dto->jsonToArray($app->request()->params()['data']);
+  $data = $app->request()->getBody();
+  $data = $dto->jsonToArray($data);
 
   $controllerFactory = $app->controllerFactory;
   // verify user token is valid and correlates to nomUsuari
@@ -94,7 +94,8 @@ $app->get('/api/periode_absencia/:token',function ($token) use ($app) {
 $app->put('/api/periode_absencia/:token',function ($token) use ($app) {
 
   $dto = $app->dto;
-  $data = $dto->jsonToArray($app->request()->params()['data']);
+  $data = $app->request()->getBody();
+  $data = $dto->jsonToArray($data);
 
   $controllerFactory = $app->controllerFactory;
   $gestioPeriodesAbsenciaCtrl = $controllerFactory->getGestioPeriodesAbsenciaCtrl();
@@ -116,7 +117,8 @@ $app->put('/api/periode_absencia/:token',function ($token) use ($app) {
 $app->delete('/api/periode_absencia/:token',function ($token) use ($app) {
 
   $dto = $app->dto;
-  $data = $dto->jsonToArray($app->request()->params()['data']);
+  $data = $app->request()->getBody();
+  $data = $dto->jsonToArray($data);
 
   $controllerFactory = $app->controllerFactory;
   $gestioPeriodesAbsenciaCtrl = $controllerFactory->getGestioPeriodesAbsenciaCtrl();
