@@ -3,22 +3,27 @@ class periodEntity{
 
   function createPeriod($startDate,$endDate,$username){
     try{
+
+      $this->app = \Slim\Slim::getInstance();
+      $userEntity = $this->app->entityFactory->getUserEntity();
+
       if(!is_null($startDate) && !is_null($endDate) && !is_null($username)) {
+
         $parsedStartDate = date('d/m/y',strtotime($startDate));
         $parsedEndDate = date('d/m/y',strtotime($endDate));
 
         if($parsedStartDate <= $parsedEndDate) {
-          $user = R::findOne('user','username = ?',array($username));
+          $userData = $userEntity->getUserDataByUsername($username);
 
-          if(!is_null($user)) {
-            $samePeriodCount = R::count('period','startdate = ? and enddate = ? and user_id = ?',array($parsedStartDate,$parsedEndDate,$user->id));
+          if(!is_null($userData)) {
+            $samePeriodCount = R::count('period','startdate = ? and enddate = ? and user_id = ?',array($parsedStartDate,$parsedEndDate,$userData['id']));
 
             if($samePeriodCount == 0) {
 
               $period = R::dispense('period');
               $period->startdate = $parsedStartDate;
               $period->enddate = $parsedEndDate;
-              $period->user_id = $user->id;
+              $period->user_id = $userData['id'];
 
               $id = R::store($period);
               return true;
@@ -35,10 +40,13 @@ class periodEntity{
 
   function getAll($user_token) {
 
-    $user = R::findOne('user',' token = ? ',array($user_token));
+    $this->app = \Slim\Slim::getInstance();
+    $userEntity = $this->app->entityFactory->getUserEntity();
 
-    if(!is_null($user)) {
-      $periods = R::findAll('period',' user_id = ? ',array($user->id));
+    $userData = $userEntity->getUserDataByToken($user_token);
+
+    if(!is_null($userData)) {
+      $periods = R::findAll('period',' user_id = ? ',array($userData['id']));
       return R::exportAll($periods);
     } else {
       return false;
@@ -47,13 +55,16 @@ class periodEntity{
 
   function updatePeriod($id,$startdate,$enddate,$user_token) {
     try {
-      $user = R::findOne('user',' token = ? ',array($user_token));
+      $this->app = \Slim\Slim::getInstance();
+      $userEntity = $this->app->entityFactory->getUserEntity();
 
-      if(!is_null($user)) {
+      $userData = $userEntity->getUserDataByToken($user_token);
 
-        $period = R::load('period',$id);
+      if(!is_null($userData)) {
+        
+        $period = R::findOne('period',' id = ? AND user_id = ?',array($id,$userData['id']));
 
-        if($period->id != 0) {
+        if(!is_null($period)) {
 
           $parsedStartDate = date('d/m/y',strtotime($startdate));
           $parsedEndDate = date('d/m/y',strtotime($enddate));
@@ -72,10 +83,13 @@ class periodEntity{
 
   function deletePeriod($id,$user_token) {
     try {
-      $user = R::findOne('user',' token = ? ',array($user_token));
+      $this->app = \Slim\Slim::getInstance();
+      $userEntity = $this->app->entityFactory->getUserEntity();
 
-      if(!is_null($user)) {
-        $period = R::load('period',$id);
+      $userData = $userEntity->getUserDataByToken($token);
+
+      if(!is_null($userData)) {
+        $period = R::findOne('period','id = ? AND user_id = ?', array($id,$userData['id']));
         R::trash($period);
 
         return true;

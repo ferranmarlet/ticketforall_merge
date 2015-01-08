@@ -1,27 +1,32 @@
 <?php
 class couponEntity{
+  private $app;
 
   function getCode($token) {
     try{
-      
-      $user = R::findOne('user',' token = ? ', array($token));
 
-      if(!is_null($user)) {
+      $this->app = \Slim\Slim::getInstance();
+      $userEntity = $this->app->entityFactory->getUserEntity();
+
+      //$user = R::findOne('user',' token = ? ', array($token));
+
+      $userData = $userEntity->getUserDataByToken($token);
+
+      if(!is_null($userData)) {
 
         $today = date('Y-m-d',strtotime('today'));
 
-        $coupon = R::findOne('coupon',' user_id = ? and datevalid = ? and used = 0 ', array($user->id,$today));
+        $coupon = R::findOne('coupon',' user_id = ? and datevalid = ? and used = 0 ', array($userData['id'],$today));
 
         if(is_null($coupon)) {
           //If it doesn't exists but there is a current absence period, we create the coupon.
-          // TODO: It should use the userEntity
 
-          $currentPeriod = R::findOne('period','startdate <= ? and enddate >= ? and user_id = ?',array($today,$today,$user->id));
+          $currentPeriod = R::findOne('period','startdate <= ? and enddate >= ? and user_id = ?',array($today,$today,$userData['id']));
 
           if(!is_null($currentPeriod)) {
             $coupon = R::dispense('coupon');
             $coupon->code = $this->randomToken(8, false, false, false, array('0', '1', '2','3', '4', '5','6', '7', '8','9'));
-            $coupon->user_id = $user->id;
+            $coupon->user_id = $userData['id'];
             $coupon->period_id = $currentPeriod->id;
             $coupon->used = 0;
             $coupon->datevalid = $today;

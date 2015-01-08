@@ -1,12 +1,22 @@
 <?php
 class userEntity{
-  function getUser($api_token) {
-    $user = R::findOne('user',' api_token = ? ', array($api_token));
+  function getUserDataByToken($token) {
+    $user = R::findOne('user',' token = ? ', array($token));
 
     if(!is_null($user)) {
       return $user->export();
     }else{
-      return false;
+      return NULL;
+    }
+  }
+
+  function getUserDataByUsername($username) {
+    $user = R::findOne('user',' username = ? ', array($username));
+
+    if(!is_null($user)) {
+      return $user->export();
+    }else{
+      return NULL;
     }
   }
 

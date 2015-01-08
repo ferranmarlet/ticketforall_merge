@@ -1,0 +1,60 @@
+﻿.row-centered {
+    text-align:center;
+}
+
+.video {
+	text-align:center;
+   	position: relative;
+   	padding-bottom: 56.25%;
+   	overflow: hidden;
+}
+
+.video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.content-page {
+    height: auto;
+}
+
+.content-page-fixed {
+    height: 460px;
+}
+
+p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+ul {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+@media screen and (max-width: 500px) {
+	.page-header h1 {
+		font-size: 2em;
+	}
+	.content-page-fixed {
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.taulaPeriodes {
+		font-size: 14px;
+	}
+}
