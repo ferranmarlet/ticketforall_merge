@@ -59,7 +59,7 @@ services.factory("ticketForAllService", function ($http, Session) {
 
         loginUser: function (name, pass) {
             var msg = {"username":"ferran","password":"1111"};
-            $http.post('/frontback/public/api/users/login', JSON.stringify(msg)).then(function (response){
+            $http.post('/public/api/users/login', JSON.stringify(msg)).then(function (response){
                console.dir(response);
             });
             var id = "12345a";

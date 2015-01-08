@@ -8,8 +8,6 @@ class couponEntity{
       $this->app = \Slim\Slim::getInstance();
       $userEntity = $this->app->entityFactory->getUserEntity();
 
-      //$user = R::findOne('user',' token = ? ', array($token));
-
       $userData = $userEntity->getUserDataByToken($token);
 
       if(!is_null($userData)) {
